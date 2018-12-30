@@ -55,7 +55,7 @@ Installation
 
 6. Create the test database
 ```
-    createdb test_Db
+    createdb test_db
 ```
 
 7. Switch to 'develop' branch
