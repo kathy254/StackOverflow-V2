@@ -10,6 +10,8 @@ install:
   - pip install coveralls codecov
   - pip install codeclimate-test-reporter
 
+dist: trusty
+
 services:
   - postgresql
 
