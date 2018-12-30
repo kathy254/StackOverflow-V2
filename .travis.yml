@@ -11,7 +11,7 @@ install:
 services:
   - postgresql
 
-  before_script:
+before_script:
   - psql -c "CREATE DATABASE test_db;" -U postgres
   - psql -c "ALTER USER postgres WITH PASSWORD 'admin';" -U postgres
   - psql -c "GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public to postgres;" -U postgres
