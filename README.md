@@ -12,7 +12,7 @@ Getting started
 --------------------
 1. Clone this repository
 ```
-    https://github.com/kathy254/StackOverflow-Lite-Api.git
+    https://github.com/kathy254/StackOverflow-V2.git
 ```
 
 2. Navigate to the cloned repository
@@ -43,32 +43,27 @@ Installation
     sudo apt-get install git-all
 ```
 
-4. Clone this repo
-```
-    git clone https://github.com/kathy254/StackOverflow-V2.git
-```
-
-5. cd into this folder
+4. cd into this folder
 ```
     cd StackOverflow-V2
 ```
 
-6. Create the development database
+5. Create the development database
 ```
     createdb stackoverflow_db
 ```
 
-7. Create the test database
+6. Create the test database
 ```
     createdb test_Db
 ```
 
-4. Switch to 'develop' branch
+7. Switch to 'develop' branch
 ```
     git checkout develop
 ```
 
-5. Install requirements
+8. Install requirements
 ```
     pip install -r requirements.txt
 ```
@@ -103,14 +98,14 @@ PUT /questions/&lt;questionID&gt;/answers/&lt;answerId&gt; | Mark an answer as a
 
 Resources used
 -----------------
-[Travis-ci](https://travis-ci.org)
-[Coveralls](https://coveralls.io)
-[Code climate](https://codeclimate.io)
-[Codacy](https://app.codacy.com)
-Python
-Flask
-Flask-restplus
-PostgreSQL
+- [Travis-ci](https://travis-ci.org)
+- [Coveralls](https://coveralls.io)
+- [Code climate](https://codeclimate.io)
+- [Codacy](https://app.codacy.com)
+- Python
+- Flask
+- Flask-restplus
+- PostgreSQL
 
 Authors
 -----------------------------
