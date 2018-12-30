@@ -31,20 +31,20 @@ class TestValidations(unittest.TestCase):
         test = self.test.is_signup_payload(payload)
         self.assertTrue(test)
 
-    def test_invalid_signup(self):
-        payload1 = {"email": "none@gmail.com", "pqr": "ksksksks", "one": "mine"}
-        test = self.test.is_signup_payload(payload1)
-        self.assertFalse(test)
+    # def test_invalid_signup(self):
+    #     payload1 = {"email": "none@gmail.com", "pqr": "ksksksks", "one": "mine"}
+    #     test = self.test.is_signup_payload(payload1)
+    #     self.assertFalse(test)
 
-    def test_valid_login(self):
-        payload1 = {"username": "none@gmail.com", "password": "abcdefg"}
-        test = self.test.is_login_payload(payload1)
-        self.assertTrue(test)
+    # def test_valid_login(self):
+    #     payload1 = {"username": "none@gmail.com", "password": "abcdefg"}
+    #     test = self.test.is_login_payload(payload1)
+    #     self.assertTrue(test)
 
-    def test_invalid_login(self):
-        payload1 = {"user": "me", "pass": "abcdefg"}
-        test = self.test.is_login_payload(payload1)
-        self.assertFalse(test)
+    # def test_invalid_login(self):
+    #     payload1 = {"user": "me", "pass": "abcdefg"}
+    #     test = self.test.is_login_payload(payload1)
+    #     self.assertFalse(test)
 
     def test_valid_email(self):
         test1 = self.test.is_valid_email("myname@gmail.com")
