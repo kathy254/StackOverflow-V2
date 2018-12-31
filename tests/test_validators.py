@@ -1,76 +1,117 @@
 import unittest
 
-from app.api.v2.utils.validators import Validations
+from app.api.v2.utils.validators import Verify
 
-
-class TestValidations(unittest.TestCase):
+class TestValidators(unittest.TestCase):
     def setUp(self):
-        self.test = Validations()
+        self.data = Verify()
+
 
     def tearDown(self):
-        self.test = None
+        self.data = None
 
-    def test_is_empty(self):
-        test = self.test.is_empty(["", "name"])
+
+    def test_empty_data(self):
+        '''method to test if data is empty'''
+        test = self.data.is_empty(["", "abcd"])
         self.assertTrue(test)
 
-    def test_not_empty(self):
-        test = self.test.is_empty(["my", "name"])
+
+    def test_is_not_empty(self):
+        '''method to test if data is not empty'''
+        test = self.data.is_empty(["abcd", "efgh"])
         self.assertFalse(test)
 
-    def test_is_whitespace(self):
-        test = self.test.is_whitespace([" ", "name"])
+    
+    def test_whitespaces(self):
+        '''method to test if input has whitespaces'''
+        test = self.data.is_whitespace([" ", "ds"])
         self.assertTrue(test)
 
-    def test_not_whitespace(self):
-        test = self.test.is_whitespace(["your", "name"])
+
+    def test_no_whitespaces(self):
+        '''method to test if input does not have whitespaces'''
+        test = self.data.is_whitespace(["ab", "cd"])
         self.assertFalse(test)
 
-    def test_valid_signup(self):
+
+    def test_correct_signup_payload(self):
+        '''method to verify that signup payload is correct'''
         payload = {"email_address": "email@gmail.com", "username": "user1", "password": "abcd"}
-        test = self.test.is_signup_payload(payload)
+        test = self.data.is_signup_payload(payload)
         self.assertTrue(test)
 
-    def test_invalid_signup(self):
-        payload1 = {"email": "none@gmail.com", "pqr": "ksksksks", "one": "mine"}
-        test = self.test.is_signup_payload(payload1)
-        self.assertFalse(test)
 
-    def test_valid_login(self):
-        payload1 = {"username": "none@gmail.com", "password": "abcdefg"}
-        test = self.test.is_login_payload(payload1)
-        self.assertTrue(test)
+    def test_incorrect_signup_payload(self):
+        '''method to test incorrect signup payload'''
+        payload1 = {"email_address": "abc@gmail.com", "myname": "name"}
+        payload2 = {"email": "abc@gmail.com", "password": "abcd"}
+        payload3 = {"email_address": "efgh@gmail.com"}
+        payload4 = {"myemail": "email@gmail.com", "myname": "name", "mypassword": "password"}
+        test1 = self.data.is_signup_payload(payload1)
+        test2 = self.data.is_signup_payload(payload2)
+        test3 = self.data.is_signup_payload(payload3)
+        test4 = self.data.is_signup_payload(payload4)
+        self.assertFalse(test1)
+        self.assertFalse(test2)
+        self.assertFalse(test3)
+        self.assertFalse(test4)
 
-    def test_invalid_login(self):
-        payload1 = {"user": "me", "pass": "abcdefg"}
-        test = self.test.is_login_payload(payload1)
-        self.assertFalse(test)
 
     def test_valid_email(self):
-        test1 = self.test.is_valid_email("myname@gmail.com")
-        test2 = self.test.is_valid_email("you@gmail.co.uk")
-        test3 = self.test.is_valid_email("me@gmail.travel")
-        self.assertTrue(test1)
-        self.assertTrue(test2)
-        self.assertTrue(test3)
+        '''method to check for validity of email address'''
+        test1 = self.data.is_valid_email("abcd@gmail.com")
+        test_ccTLD = self.data.is_valid_email("efgh@gmail.co.ke")
+        test_long_TLD = self.data.is_valid_email("ijkl@gmail.travel")
+        test_uppercase = self.data.is_valid_email("ABDCDEF@GMAIL.COM")
+        self.assertFalse(test1)
+        self.assertFalse(test_ccTLD)
+        self.assertFalse(test_long_TLD)
+        self.assertFalse(test_uppercase)
+
 
     def test_invalid_email(self):
-        test1 = self.test.is_valid_email("myname.com")
-        test2 = self.test.is_valid_email("emailaddress")
-        self.assertFalse(test1)
-        self.assertFalse(test2)
-
-    def test_valid_password(self):
-        test1 = self.test.is_valid_password("abcdefghsl")
-        test2 = self.test.is_valid_password("18899299")
+        '''method to check for invalid email address'''
+        test1 = self.data.is_valid_email("lslslslsl")
+        test2 = self.data.is_valid_email("abcdef.com")
         self.assertTrue(test1)
         self.assertTrue(test2)
 
-    def test_invalid_password(self):
-        test1 = self.test.is_valid_password("abcd")
-        test2 = self.test.is_valid_password("abdiislsllslallalslkkd")
+
+    def test_valid_password(self):
+        '''method to check for valid password'''
+        test1 = self.data.is_valid_password("isisisis")
+        test2 = self.data.is_valid_password("ISISISIS")
         self.assertFalse(test1)
         self.assertFalse(test2)
 
-if __name__ == "__main__":
-    unittest.main()
+
+    def test_invalid_password(self):
+        '''method to check for invalid password'''
+        test1 = self.data.is_valid_password("abc")
+        test2 = self.data.is_valid_password("123")
+        self.assertTrue(test1)
+        self.assertTrue(test2)
+
+
+    def test_login_payload(self):
+        '''method to check for valid login payload'''
+        payload = {"username": "myname", "password": "abcdefgh"}
+        test = self.data.is_login_payload(payload)
+        self.assertTrue(test)
+
+
+    def test_incorrect_login_payload(self):
+        '''method to check for incorrect login payload'''
+        payload1 = {"email_address": "abcd@gmail.com"}
+        payload2 = {"user": "myname", "pass": "notpass"}
+        payload3 = {"user": "notmyname", "something": "somethingsomething"}
+        test = self.data.is_login_payload(payload1)
+        test2 = self.data.is_login_payload(payload2)
+        test3 = self.data.is_login_payload(payload3)
+        self.assertFalse(test)
+        self.assertFalse(test2)
+        self.assertFalse(test3)
+    
+
+
