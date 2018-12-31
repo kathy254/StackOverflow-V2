@@ -1,5 +1,9 @@
 # StackOverflow-V2
 
+Badges
+----------
+[![Build Status](https://travis-ci.org/kathy254/StackOverflow-V2.svg?branch=develop)](https://travis-ci.org/kathy254/StackOverflow-V2)  [![Coverage Status](https://coveralls.io/repos/github/kathy254/StackOverflow-V2/badge.svg?branch=develop)](https://coveralls.io/github/kathy254/StackOverflow-V2?branch=develop)
+
 StackOverflow-Lite-Api is a simple question and answer platform.
 --------------------------------------------------------------------
 **Find the web UI here:**
